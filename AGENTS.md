@@ -65,7 +65,7 @@ type: feat | fix | docs | style | refactor | perf | test | chore
 
 - **框架迁移**: Hexo + Almagest → Astro 5 + Fuwari
 - **内容迁移**: 158 篇内容迁入 `src/content/posts/`（含图片资源），frontmatter 标准化
-- **主题抽离**: Fuwari 抽成独立包 `astro-theme-fuwari`（CNB npm 制品库），博客依赖当前 `0.1.4`
+- **主题抽离**: Fuwari 抽成独立包 `astro-theme-fuwari`（CNB npm 制品库），博客依赖当前 `0.1.7`
 - **路由统一**: 单流 `/posts/<slug>/`；旧 `/blog/`、`/notes/`、`/coding/` 路由已不再维护（迁移完成，旧链未保留 301，直接 404）
 - **功能补齐**: Giscus 评论（已显式写入 `astro.config.mjs`）、Pagefind 搜索、sitemap、RSS、明暗主题切换
 - **站点增强**: 全站 footer 的 Not-by-AI 徽章（`0.1.3`）、右下角「随机文章」浮动按钮（`0.1.4`）
@@ -201,7 +201,7 @@ type: feat | fix | docs | style | refactor | perf | test | chore
 
 1. **主题（Fuwari）**: 独立包 `astro-theme-fuwari`（CNB 制品库）。改主题 → 主题仓升版 `npm publish` → 博客 `pnpm update astro-theme-fuwari` 并提交 lockfile。
 2. **构建失败**: 先 `pnpm install` 再 `pnpm build`；Content Collections 的 frontmatter 校验失败会直接报错。CI 装包需 `CNB_TOKEN`，本地 shell 也需该环境变量。
-3. **样式偶发报错 `The \`link\` class does not exist`**: 主题包 `astro-theme-fuwari` ≤ 0.1.5 的主题 CSS 只被 `ImageWrapper.astro` 里过宽的 `import.meta.glob("../../**")` 顺带加载，顺序取决于文件系统枚举，`markdown.css` 的 `@apply link` 依赖 `main.css` 先加载，故构建**顺序相关地偶发失败**（本地过、CI 挂）。临时用 `patches/astro-theme-fuwari.patch`（显式加载 CSS + 收窄 glob）兜底；主题仓已提根因修复，待发布新版本后 `pnpm update astro-theme-fuwari` 并移除 patch。
+3. **样式偶发报错 `The \`link\` class does not exist`**: 起因是主题包 ≤ 0.1.5 的 CSS 只被 `ImageWrapper.astro` 里过宽的 `import.meta.glob("../../**")` 顺带加载，`markdown.css` 的 `@apply link` 依赖 `main.css` 先加载。主题包 0.1.6 起已显式按序加载样式并展开跨文件 `@apply`；博客仓已升级到 0.1.7 并移除 `patches/astro-theme-fuwari.patch` 与 `themeCssOrderFix()` 兜底，无需再打补丁。
 
 ## Coze 平台配置
 
