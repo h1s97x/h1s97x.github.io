@@ -24,7 +24,9 @@
 如果你有任何问题、建议或合作意向，欢迎通过以下方式联系我。
 
 - **GitHub**: [h1s97x](https://github.com/h1s97x)
-- **Email**: 请在 GitHub 主页查看
+- **CNB**: [h1s97x](https://cnb.cool/u/h1s97x)
+- **Bilibili**: [个人空间](https://space.bilibili.com/156170194)
+- **Email**: [yang1297656998@outlook.com](mailto:yang1297656998@outlook.com)
 - 也可以直接在文章下方留言评论
 
 ## 版权声明

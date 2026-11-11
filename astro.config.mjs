@@ -6,7 +6,6 @@ import fuwariTheme, { fuwariIntegrations } from "astro-theme-fuwari";
 import { reprintCss } from "./src/styles/reprint-css.ts";
 import { siteStyles } from "./src/styles/site-styles-integration.ts";
 import { themeCssOrderFix } from "./src/styles/theme-css-order-fix.ts";
-
 // https://astro.build/config
 export default defineConfig({
 	site: "https://h1s97x.github.io/",
@@ -14,6 +13,31 @@ export default defineConfig({
 	integrations: [
 		// 主题包：拥有布局/组件/路由/集合 schema 与 markdown 配置，博客只提供内容
 		fuwariTheme({
+			// 侧栏个人链接。CNB 没有品牌图标，用 code-blocks 代替
+			profileConfig: {
+				links: [
+					{
+						name: "GitHub",
+						icon: "fa6-brands:github",
+						url: "https://github.com/h1s97x",
+					},
+					{
+						name: "CNB",
+						icon: "material-symbols:code-blocks-rounded",
+						url: "https://cnb.cool/u/h1s97x",
+					},
+					{
+						name: "Bilibili",
+						icon: "fa6-brands:bilibili",
+						url: "https://space.bilibili.com/156170194",
+					},
+					{
+						name: "Email",
+						icon: "fa6-solid:envelope",
+						url: "mailto:yang1297656998@outlook.com",
+					},
+				],
+			},
 			// 评论系统（Giscus）。provider 亦可改为 "utterances"（需相应配置）。
 			commentConfig: {
 				provider: "giscus",
